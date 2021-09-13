@@ -1,0 +1,87 @@
+{% extends 'store.html.twig' %}
+
+{% block title %}Vos commandes
+{% endblock %}
+
+{% block principal %}
+	<div class='col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3'>
+		<div class='row p-2'>
+			<div class='col-12'>
+				<section class='row card bg-primary'>
+
+					<div class='card-header'>
+						<h4 class='col-12 text-center text-white'>Vos Commandes</h4>
+					</div>
+
+					<div class="list-group list-group-flush">
+						{% if orders|length >0 %}
+
+							{% for order in orders %}
+								<div class='list-group-item list-group-item-primary'>
+									<div class='col-12'>
+
+										<div class='row'>
+											<h4 class='col-12'>
+												Commande
+												{{order.id}}
+												:
+												{{order.calculateTotal()|number_format(2, ',', ' ')}}
+												$ ({{order.orderDate|date("Y-m-d")}})
+											</h4>
+										</div>
+
+										<div class='row'>
+											<table class='col-12'>
+												{% for orderDetail in order.orderDetails %}
+													<tr>
+														<td>{{orderDetail.product.name}}
+														</td>
+														<td class='text-right'>
+															x
+															{{orderDetail.quantity}}
+														</td>
+													</tr>
+												{% endfor %}
+
+												{% if timers[order.id] != 0 %}
+													<tr>
+														<td class='text-right'>
+															<strong class='col-12'>Il reste
+																{{timers[order.id]}}
+																pour annuler
+															</strong>
+														</td>
+														<td>
+															<div class='d-flex flex-column'>
+																<a class='btn btn-danger' href="cancelOrder/{{order.id}}">Annuler</a>
+															</div>
+														</td>
+													</tr>
+												{% endif %}
+											</table>
+										</div>
+
+									</div>
+								</div>
+							{% endfor %}
+
+						{% else %}
+
+							<div class='list-group-item list-group-item-primary'>
+								<div class='d-flex justify-content-center'>
+									<div class='row'>
+										<div class='col-12'>
+											<a class='btn btn-secondary' href="{{path('catalog')}}">Retour au catalogue</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						{% endif %}
+					</div>
+
+				</section>
+			</div>
+		</div>
+	</div>
+{% endblock %}

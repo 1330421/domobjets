@@ -1,0 +1,62 @@
+<div class='row'>
+	<div class='col-12 bg-secondary'>
+
+		<div class='row pt-2'>
+			<h1 class='col-12 text-center'>
+				<a class='text-warning text-decoration-none' href="{{path('catalog')}}">
+					Domobjets - Administration
+				</a>
+			</h1>
+		</div>
+
+		<div class='row'>
+			<nav class='col-12 navbar navbar-dark justify-content-end'>
+
+				{% if admin is defined %}
+					<a class='btn btn-secondary' href='administer'>Administration</a>
+					<a class='btn btn-secondary' href='add-product'>Modifier les produits</a>
+					<a class='btn btn-secondary' href='edit-categories'>Modifier les catégories</a>
+					<a class='btn btn-secondary' href='edit-brands'>Modifier les marques</a>
+					<a class='btn btn-secondary' href='show-inventory'>Inventaire</a>
+					<a class='btn btn-secondary' href='show-sales-report'>Rapport des ventes</a>
+					<a class='btn btn-secondary' href='sign-out'>Deconnexion</a>
+				{% else %}
+					<a class='btn btn-secondary' href='admin'>Connexion</a>
+
+				{% endif %}
+
+			</nav>
+		</div>
+
+	</div>
+</div>
+
+{% if app.session.flashbag.get('admin') is defined %}
+	{% for notice in app.session.flashbag.get('admin') %}
+		<div class='row bg-primary p-1'>
+			<div class='col-12 text-center text-white'>
+				{{notice}}
+			</div>
+		</div>
+	{% endfor %}
+{% endif %}
+
+{% if app.session.flashbag.get('admin-danger') is defined %}
+	{% for notice in app.session.flashbag.get('admin-danger') %}
+		<div class='row bg-danger p-1'>
+			<div class='col-12 text-center text-white'>
+				{{notice}}
+			</div>
+		</div>
+	{% endfor %}
+{% endif %}
+
+{% if app.session.flashbag.get('admin-success') is defined %}
+	{% for notice in app.session.flashbag.get('admin-success') %}
+		<div class='row bg-success p-1'>
+			<div class='col-12 text-center text-white'>
+				{{notice}}
+			</div>
+		</div>
+	{% endfor %}
+{% endif %}

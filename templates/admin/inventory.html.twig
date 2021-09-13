@@ -1,0 +1,79 @@
+{% extends 'admin/administration.html.twig' %}
+
+{% block title %}Inventaire
+{% endblock %}
+
+{% block principal %}
+	<div class='col-md-10 offset-md-1 col-lg-8 offset-lg-2'>
+		<div class='row p-2'>
+			<div class='col-12'>
+				<section class='row card bg-secondary'>
+
+					<div class='card-header'>
+						<h4 class='col-12 text-center text-warning'>Produits au catalogue</h4>
+					</div>
+
+					<div class='list-group list-group-flush'>
+
+						<div class='list-group-item list-group-item-secondary text-right'>
+							Produit à commander :
+							<svg class='table-danger' width='32' height='16'></svg>
+						</div>
+
+						<table class='card-body table table-secondary table-striped list-group-item-secondary'>
+
+							<thead>
+								<tr>
+									<th scope='col'>Nom</th>
+									<th scope='col' class='text-right'>Prix</th>
+									<th scope='col' class='text-right'>Seuil minimum</th>
+									<th scope='col' class='text-right'>En stock</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								{% for product in productsToOrder %}
+									<tr class='table-danger text-danger'>
+										<th scope='col'>
+											{{product.name}}
+										</th>
+										<td class='text-right'>
+											{{product.price|number_format(2,',',' ')}}
+											$
+										</td>
+										<td class='text-right'>
+											{{product.minThresholdQty}}
+										</td>
+										<td class='text-right'>
+											{{product.stockQty}}
+										</td>
+									</tr>
+								{% endfor %}
+								{% for product in products %}
+									<tr>
+										<th scope='col'>
+											{{product.name}}
+										</th>
+										<td class='text-right'>
+											{{product.price|number_format(2,',',' ')}}
+											$
+										</td>
+										<td class='text-right'>
+											{{product.minThresholdQty}}
+										</td>
+										<td class='text-right'>
+											{{product.stockQty}}
+										</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+
+						</table>
+
+					</div>
+
+				</section>
+			</div>
+		</div>
+	</div>
+{% endblock %}

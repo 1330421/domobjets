@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+	<header class='col-12'>
+		{% include "header.html.twig" %}
+	</header>
+
+	<div class='col-12'>
+		<div class='row p-2'>
+			{% block principal %}{% endblock %}
+		</div>
+	</div>
+
+	<footer class="col-12 text-center">
+		{% include "footer.html.twig" %}
+	</footer>
+
+{% endblock %}

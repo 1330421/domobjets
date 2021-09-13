@@ -1,0 +1,53 @@
+{# Produit #}
+<div class='col-12'>
+	<div class='row h-100 py-2'>
+		<div class='col-12'>
+			<div
+				class='card h-100'>
+
+				{# Image #}
+
+				<div class='col p-2'>
+					<div class='d-flex justify-content-center'>
+						<img class='-img-fluid -col-12 card-img-top' data-toggle='modal' data-target='#modal{{product.id}}' src="{{asset('images/' ~ product.id ~ '.jpg')}}" onerror="this.src='{{asset('images/none.png')}}'" style="max-width: 192px;" alt='image non disponible'/>
+					</div>
+				</div>
+
+				<div class='list-group list-group-flush'>
+					<div class='list-group-item list-group-item-secondary'>
+
+						{# Nom #}
+						{# <div class='row'> #}
+							<h6 class=' text-center card-title' data-toggle='modal' data-target='#modal{{product.id}}'> {{product.name}}</h6>
+						{# </div> #}
+
+						{# Prix #}
+						<div class='col-12'>
+							<div class='row'>
+								<table class='col-12'>
+									<tr>
+										<td>
+											<a href="addProduct?idProduct={{product.id}}">
+												<img src='{{asset('images/cart.png')}}' width="28" alt='Ajouter au panier'/>
+											</a>
+										</td>
+
+										<td class='d-flex justify-content-end'>
+											<h5>
+												{{product.price}}
+												$
+											</h5>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>{# Modal #}{% include "modal.html.twig" %}
+{# <div class='col-6 col-lg-4 col-xl-3'> #}

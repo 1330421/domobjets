@@ -1,0 +1,40 @@
+<div class="modal fade bd-example-modal-lg" id="modal{{product.id}}" tabindex="-1" role="dialog" aria-labelledby="productModal{{product.id}}" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<h5 class="modal-title" id="productModal{{product.id}}">{{product.name}}</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div
+				class="modal-body row">
+
+				{# Image #}
+				<div class='col-6'>
+					<img class='img-fluid col-12' src="{{asset('images/' ~ product.id ~ '-2.jpg')}}" onerror="this.src='{{asset('images/none.png')}}'" alt='image non disponible' width='80'/>
+				</div>
+
+				{# Détails #}
+				<div class='col-6'>
+					<h6>{{product.category.name}}</h6>
+					<p>{{product.description}}</p>
+					<h4>{{product.price}}
+						$</h4>
+					<p>Quantité en inventaire :
+						{{product.stockQty}}</p>
+
+				</div>
+
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+				<a href="addProduct?idProduct={{product.id}}" class="btn"><img src={{asset('images/cart.png')}} alt='Ajouter au panier' width='32'/></a>
+			</div>
+
+		</div>
+	</div>
+</div>

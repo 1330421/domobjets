@@ -1,0 +1,260 @@
+{% extends 'store.html.twig' %}
+
+{% block title %}Modifier le compte
+{% endblock %}
+
+{% block principal %}
+	<div class='col-md-10 offset-md-1 col-lg-12 offset-lg-0 col-xl-10 offset-xl-1'>
+		<div class='row'>
+
+			<div class='col-12 col-lg-6 text-left'>
+				<div class='row p-2'>
+					<div class='col-12 '>
+						<section class='row card bg-success'>
+
+							<div class='card-header'>
+								<h4 class='col-12 text-center text-white'>Modifier le compte</h4>
+							</div>
+
+							<div class='list-group list-group-flush'>
+								{{ form_start(form, {'attr':{'class':'list-group-item list-group-item-success'}})}}
+								{{form_errors(form)}}
+								<table class='col-12'>
+									<tr>
+										<td>
+											{{ form_label(form.firstName, "Prénom : ") }}
+										</td>
+										<td class='d-flex flex-column'>
+											{{ form_widget(form.firstName) }}
+										</td>
+									</tr>
+									<tr>
+										<td colspan='2' class='text-danger'>
+											{{ form_errors(form.firstName) }}
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											{{ form_label(form.name, "Nom : ") }}
+										</td>
+										<td class='d-flex flex-column'>
+											{{ form_widget(form.name) }}
+										</td>
+									</tr>
+									<tr>
+										<td colspan='2' class='text-danger'>
+											{{ form_errors(form.name) }}
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											{{ form_label(form.gender, "Genre : ") }}
+										</td>
+										<td class='d-flex flex-column'>
+											{{ form_widget(form.gender) }}
+										</td>
+									</tr>
+									<tr>
+										<td colspan='2' class='text-danger'>
+											{{ form_errors(form.gender) }}
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											{{ form_label(form.email, "Adresse courriel : ") }}
+										</td>
+										<td class='d-flex flex-column'>
+											{{ form_widget(form.email) }}
+										</td>
+									</tr>
+									<tr>
+										<td colspan='2' class='text-danger'>
+											{{ form_errors(form.email) }}
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											{{ form_label(form.phone, "Numéro de téléphone : ") }}
+										</td>
+										<td class='d-flex flex-column'>
+											{{ form_widget(form.phone) }}
+										</td>
+									</tr>
+									<tr>
+										<td colspan='2' class='text-danger'>
+											{{ form_errors(form.phone) }}
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											{{ form_label(form.address, "Adresse : ") }}
+										</td>
+										<td class='d-flex flex-column'>
+											{{ form_widget(form.address) }}
+										</td>
+									</tr>
+									<tr>
+										<td colspan='2' class='text-danger'>
+											{{ form_errors(form.address) }}
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											{{ form_label(form.city, "Ville : ") }}
+										</td>
+										<td class='d-flex flex-column'>
+											{{ form_widget(form.city) }}
+										</td>
+									</tr>
+									<tr>
+										<td colspan='2' class='text-danger'>
+											{{ form_errors(form.city) }}
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											{{ form_label(form.postalCode, "Code postal : ") }}
+										</td>
+										<td class='d-flex flex-column'>
+											{{ form_widget(form.postalCode) }}
+										</td>
+									</tr>
+									<tr>
+										<td colspan='2' class='text-danger'>
+											{{ form_errors(form.postalCode) }}
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											{{ form_label(form.province, "Province : ") }}
+										</td>
+										<td class='d-flex flex-column'>
+											{{ form_widget(form.province) }}
+										</td>
+									</tr>
+									<tr>
+										<td colspan='2' class='text-danger'>
+											{{ form_errors(form.province) }}
+										</td>
+									</tr>
+
+									<tr>
+										<td colspan='2'>
+											<div class='d-flex justify-content-end'>
+												{{ form_widget(form.Valider, {'attr':{'class':'btn btn-success'}}) }}
+											</div>
+										</td>
+									</tr>
+								</table>
+								{% do form.user.setRendered %}
+								{% do form.password.setRendered %}
+								{{ form_end(form)}}
+
+							</div>
+
+						</section>
+					</div>
+				</div>
+			</div>
+
+			<div class='col-12 col-lg-6 text-left'>
+				<div class='row p-2'>
+					<div class='col-12'>
+						<section class='row card bg-success'>
+
+							<div class='card-header'>
+								<h4 class='col-12 text-center text-white'>Modifier le compte</h4>
+							</div>
+
+							<div class='list-group list-group-flush'>
+								{{ form_start(passwordForm, {'attr':{'class':'list-group-item list-group-item-success'}})}}
+								{{form_errors(passwordForm)}}
+								<table class='col-12'>
+									<tr>
+										<td>
+											<label for='currentPassword'>
+												Mot de passe actuel :
+											</label>
+										</td>
+										<td class='d-flex flex-column'>
+											<input type='password' id='currentPassword' name='currentPassword' class='password-field'/>
+										</td>
+									</tr>
+									<tr>
+										<td colspan='2' class='text-danger'>
+											{% if app.session.flashbag.get('passwordError') is defined %}
+												{% for notice in app.session.flashbag.get('passwordError') %}
+													<ul>
+														<li>{{notice}}</li>
+													</ul>
+												{% endfor %}
+											{% endif %}
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											{{ form_label(passwordForm.password.first, "Nouveau mot de passe : ") }}
+										</td>
+										<td class='d-flex flex-column'>
+											{{ form_widget(passwordForm.password.first) }}
+										</td>
+									</tr>
+									<tr>
+										<td colspan='2' class='text-danger'>
+											{{ form_errors(passwordForm.password.first) }}
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											{{ form_label(passwordForm.password.second, "Confirmer le nouveau mot de passe : ") }}
+										</td>
+										<td class='d-flex flex-column'>
+											{{ form_widget(passwordForm.password.second) }}
+										</td>
+									</tr>
+									<tr>
+										<td colspan='2' class='text-danger'>
+											{{ form_errors(passwordForm.password.second) }}
+										</td>
+									</tr>
+
+									<tr>
+										<td colspan='2'>
+											<div class='d-flex justify-content-end'>
+												{{ form_widget(passwordForm.Valider, {'attr':{'class':'btn btn-success'}}) }}
+											</div>
+										</td>
+									</tr>
+								</table>
+								{% do passwordForm.user.setRendered %}
+								{% do passwordForm.firstName.setRendered %}
+								{% do passwordForm.name.setRendered %}
+								{% do passwordForm.gender.setRendered %}
+								{% do passwordForm.address.setRendered %}
+								{% do passwordForm.city.setRendered %}
+								{% do passwordForm.province.setRendered %}
+								{% do passwordForm.postalCode.setRendered %}
+								{% do passwordForm.phone.setRendered %}
+								{% do passwordForm.email.setRendered %}
+								{{ form_end(passwordForm)}}
+
+							</div>
+
+						</section>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+{% endblock %}

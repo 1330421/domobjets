@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang='fr'>
+	<head>
+		<meta charset="UTF-8">
+		<meta name='viewport' content='width=device-width, initial-scale=1'>
+		<title>
+			{% block title %}Domobjets
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			<!-- CSS de Bootstrap compilé et minifié -->
+			<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+			<link rel='stylesheet' href="{{ asset('css/maison.css') }}">
+		{% endblock %}
+	</head>
+
+	{% if isToRefresh is defined %}
+		<body onload="startAutoRefresh()" class='bg-dark'>
+		{% else %}
+			<body class='bg-dark'>
+			{% endif %}
+			<div class='container-fluid'>
+				<div class='row'> {% block body %}{% endblock %}
+					</div>
+				</div>
+
+				{% block javascripts %}
+					<!-- jQuery library -->
+					<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+					<!-- Popper JS -->
+					<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+					<!-- JavaScript compilé -->
+					<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+					<script src="{{ asset('js/validateCreditCard.js') }}"></script>
+					<script src="{{ asset('js/cancellationTimer.js') }}"></script>
+				{% endblock %}
+
+				{% if orders is defined %}
+				</body>
+		{% else %}
+			</body>
+		{% endif %}
+	</html>

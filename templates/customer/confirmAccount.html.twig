@@ -1,0 +1,96 @@
+{% extends 'store.html.twig' %}
+
+{% block title %}Créer un compte
+{% endblock %}
+
+{% block principal %}
+	<div class='col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4'>
+		<div class='row p-2'>
+			<div class='col-12'>
+				<section class='row card bg-success'>
+
+					<div class='card-header'>
+						<h4 class='col-12 text-center text-white'>Confirmer le compte</h4>
+					</div>
+
+					<div class='list-group list-group-flush'>
+						<div class='list-group-item list-group-item-success'>
+							<table class='col-12'>
+								<tr>
+									<td>
+										Nom d'utilisateur :
+									</td>
+									<td class='d-flex flex-column'>
+										{{candidateCustomer.user}}
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										Prénom :
+									</td>
+									<td class='d-flex flex-column'>
+										{{candidateCustomer.firstName}}
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										Nom de famille :
+									</td>
+									<td class='d-flex flex-column'>
+										{{candidateCustomer.name}}
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										Genre :
+									</td>
+									<td class='d-flex flex-column'>
+										{{candidateCustomer.gender}}
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										Adresse :
+									</td>
+									<td class='d-flex flex-column'>
+										{{candidateCustomer.address}},<br>
+										{{candidateCustomer.city}}<br>
+										{{candidateCustomer.province}}
+										{{candidateCustomer.postalCode}}
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										Adresse courriel :
+									</td>
+									<td class='d-flex flex-column'>
+										{{candidateCustomer.email}}
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan='2'>
+										<div class='d-flex justify-content-end'>
+											<div class='row'>
+												<div class='col-12'>
+													<a class='btn btn-dark' href='create-account'>Annuler</a>
+													<a class='btn btn-success' href='confirm-account'>Confirmer</a>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+
+				</section>
+			</div>
+		</div>
+	</div>
+{% endblock %}

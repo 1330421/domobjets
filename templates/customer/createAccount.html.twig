@@ -1,0 +1,204 @@
+{% extends 'store.html.twig' %}
+
+{% block title %}Créer un compte
+{% endblock %}
+
+{% block principal %}
+	<div class='col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3'>
+		<div class='row p-2'>
+			<div class='col-12'>
+				<section class='row card bg-success'>
+
+					<div class='card-header'>
+						<h4 class='col-12 text-center text-white'>Création d'un compte</h4>
+					</div>
+
+					<div class='list-group list-group-flush'>
+						{{ form_start(form, {'attr':{'class':'list-group-item list-group-item-success'}})}}
+						{{form_errors(form)}}
+						<table class='col-12'>
+							<tr>
+								<td class='d-flex flex-column'>
+									{{ form_label(form.user, "Nom d'utilisateur : ") }}
+								</td>
+								<td class='d-flex flex-column'>
+									{{ form_widget(form.user) }}
+								</td>
+							</tr>
+							<tr>
+								<td colspan='2' class='text-danger'>
+									{{ form_errors(form.user) }}
+								</td>
+							</tr>
+
+							<tr>
+								<td class='d-flex flex-column'>
+
+									{{ form_label(form.firstName, "Prénom : ") }}
+								</td>
+								<td class='d-flex flex-column'>
+									{{ form_widget(form.firstName) }}
+								</td>
+							</tr>
+							<tr>
+								<td colspan='2' class='text-danger'>
+									{{ form_errors(form.firstName) }}
+								</td>
+							</tr>
+
+							<tr>
+								<td class='d-flex flex-column'>
+									{{ form_label(form.name, "Nom : ") }}
+								</td>
+								<td class='d-flex flex-column'>
+									{{ form_widget(form.name) }}
+								</td>
+							</tr>
+							<tr>
+								<td colspan='2' class='text-danger'>
+									{{ form_errors(form.name) }}
+								</td>
+							</tr>
+
+							<tr>
+								<td class='d-flex flex-column'>
+									{{ form_label(form.gender, "Genre : ") }}
+								</td>
+								<td class='d-flex flex-column'>
+									{{ form_widget(form.gender) }}
+								</td>
+							</tr>
+							<tr>
+								<td colspan='2' class='text-danger'>
+									{{ form_errors(form.gender) }}
+								</td>
+							</tr>
+
+							<tr>
+								<td class='d-flex flex-column'>
+									{{ form_label(form.email, "Adresse courriel : ") }}
+								</td>
+								<td class='d-flex flex-column'>
+									{{ form_widget(form.email) }}
+								</td>
+							</tr>
+							<tr>
+								<td colspan='2' class='text-danger'>
+									{{ form_errors(form.email) }}
+								</td>
+							</tr>
+
+							<tr>
+								<td class='d-flex flex-column'>
+									{{ form_label(form.password.first, "Mot de passe : ") }}
+								</td>
+								<td class='d-flex flex-column'>
+									{{ form_widget(form.password.first) }}
+								</td>
+							</tr>
+							<tr>
+								<td colspan='2' class='text-danger'>
+									{{ form_errors(form.password.first) }}
+								</td>
+							</tr>
+
+							<tr>
+								<td class='d-flex flex-column'>
+									{{ form_label(form.password.second, "Confirmer le mot de passe : ") }}
+								</td>
+								<td class='d-flex flex-column'>
+									{{ form_widget(form.password.second) }}
+								</td>
+							</tr>
+							<tr>
+								<td colspan='2' class='text-danger'>
+									{{ form_errors(form.password.second) }}
+								</td>
+							</tr>
+
+							<tr>
+								<td class='d-flex flex-column'>
+									{{ form_label(form.phone, "Numéro de téléphone : ") }}
+								</td>
+								<td class='d-flex flex-column'>
+									{{ form_widget(form.phone) }}
+								</td>
+							</tr>
+							<tr>
+								<td colspan='2' class='text-danger'>
+									{{ form_errors(form.phone) }}
+								</td>
+							</tr>
+
+							<tr>
+								<td class='d-flex flex-column'>
+									{{ form_label(form.address, "Adresse : ") }}
+								</td>
+								<td class='d-flex flex-column'>
+									{{ form_widget(form.address) }}
+								</td>
+							</tr>
+							<tr>
+								<td colspan='2' class='text-danger'>
+									{{ form_errors(form.address) }}
+								</td>
+							</tr>
+
+							<tr>
+								<td class='d-flex flex-column'>
+									{{ form_label(form.city, "Ville : ") }}
+								</td>
+								<td class='d-flex flex-column'>
+									{{ form_widget(form.city) }}
+								</td>
+							</tr>
+							<tr>
+								<td colspan='2' class='text-danger'>
+									{{ form_errors(form.city) }}
+								</td>
+							</tr>
+
+							<tr>
+								<td class='d-flex flex-column'>
+									{{ form_label(form.postalCode, "Code postal : ") }}
+								</td>
+								<td class='d-flex flex-column'>
+									{{ form_widget(form.postalCode) }}
+								</td>
+							</tr>
+							<tr>
+								<td colspan='2' class='text-danger'>
+									{{ form_errors(form.postalCode) }}
+								</td>
+							</tr>
+
+							<tr>
+								<td class='d-flex flex-column'>
+									{{ form_label(form.province, "Province : ") }}
+								</td>
+								<td class='d-flex flex-column'>
+									{{ form_widget(form.province) }}
+								</td>
+							</tr>
+							<tr>
+								<td colspan='2' class='text-danger'>
+									{{ form_errors(form.province) }}
+								</td>
+							</tr>
+
+							<tr>
+								<td colspan='2'>
+									<div class='d-flex justify-content-end'>
+										{{ form_widget(form.Valider, {'attr':{'class':'btn btn-success'}}) }}
+									</div>
+								</td>
+							</tr>
+						</table>
+						{{ form_end(form)}}
+					</div>
+
+				</section>
+			</div>
+		</div>
+	</div>
+{% endblock %}

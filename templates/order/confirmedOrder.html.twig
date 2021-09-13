@@ -1,0 +1,80 @@
+{% extends 'store.html.twig' %}
+
+{% block title %}Commande réussie
+{% endblock %}
+
+{% block principal %}
+	<div class='col-xl-6 offset-xl-3'>
+		<div class='row p-2'>
+			<div class='col-12'>
+				<section class='row card bg-secondary'>
+
+					<div class='card-header'>
+						<h4 class='col-12 text-center text-white'>
+							La commande
+							{{order.id}}
+							est en préparation !
+						</h4>
+					</div>
+
+
+					<div class='list-group list-group-flush'>
+						<div class='list-group-item list-group-item-secondary'>
+
+							{% for orderDetail in order.orderDetails %}
+								{% if orderDetail.quantityOut > 0 %}
+									<h5 class='text-danger'>Attention : Rupture de stock pour l'appareil
+										{{orderDetail.product.name}}
+										{% if orderDetail.quantityOut > 1 %}
+											({{orderDetail.quantityOut}}
+											items manquants)
+										{% else %}
+											({{orderDetail.quantityOut}}
+											item manquant)
+										{% endif %}
+									</h5>
+								{% endif %}
+
+							{% endfor %}
+
+							<h4>La commande sera envoyée à :</h4>
+
+							<h3>
+								{{order.customer.name}},
+								{{order.customer.firstName}}
+							</h3>
+
+							<h4>{{order.customer.address}}</h4>
+
+							<h4>{{order.customer.city}}</h4>
+
+							<h4>
+								{{order.customer.province}}
+								{{order.customer.postalCode}}
+							</h4>
+
+							<h5 class='text-danger'>Vous avez 48 heure pour annuler votre commande.</h5>
+
+							<h4>Vous recevrez un courriel à
+								{{order.customer.email}}
+								contenant une facture détaillée de
+								{{order.calculateTotal()|number_format(2, ',', ' ')}}
+								$
+							</h4>
+
+							<div class='d-flex justify-content-end'>
+								<div class='row'>
+									<div class='col-12'>
+										<a href="./" class="btn btn-secondary">Retour au catalogue</a>
+										<a href="showOrders" class="btn btn-secondary">Historique des commandes</a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+{% endblock %}

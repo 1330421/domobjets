@@ -1,0 +1,35 @@
+{% extends 'store.html.twig' %}
+
+{% block title %}Annuler une commande
+{% endblock %}
+
+{% block principal %}
+	<div class='col-lg-8 offset-lg-2 col-xl-6 offset-xl-3'>
+		<div class='row p-2'>
+			<div class='col-12'>
+				<section class='row card bg-danger'>
+
+					<div class='card-header'>
+						<h4 class='col-12 text-center text-white'>
+							Confirmez-vous l'annulation de la commande&nbsp;{{idOrder}}&nbsp;?
+						</h4>
+					</div>
+
+					<div class='list-group list-group-flush'>
+						<div class='list-group-item list-group-item-danger'>
+							<div class='d-flex justify-content-center'>
+								<div class='row'>
+									<div class='col-12'>
+										<a class='btn btn-secondary' href='../'>Retour au catalogue</a>
+										<a class='btn btn-danger' href="../confirmDeletion/{{idOrder}}">Confirmer</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</section>
+			</div>
+		</div>
+	</div>
+{% endblock %}

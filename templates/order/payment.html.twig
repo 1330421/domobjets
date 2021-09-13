@@ -1,0 +1,107 @@
+{% extends 'store.html.twig' %}
+
+{% block title %}
+	Mode de payement
+{% endblock %}
+
+{% block principal %}
+	<div class='col-xl-6 offset-xl-3'>
+		<div class='row p-2'>
+			<div class='col-12'>
+				<section class='row card bg-secondary'>
+
+					<div class='card-header'>
+						<h4 class='col-12 text-center text-white'>Mode de payement</h4>
+					</div>
+
+					<div class='list-group list-group-flush'>
+						<form class='list-group-item list-group-item-secondary' method='post' onsubmit='return(validateCreditCard(this))'>
+							<table class='col-12'>
+								<tr>
+									<td>
+										<label>
+											Type de carte de crédit :
+										</label>
+									</td>
+									<td>
+										<div class='d-flex justify-content-start'>
+											<div class='row'>
+												<div class='col-12'>
+													<input type='radio' value='V' name='creditCard' id='visa'/>
+													<img src="{{asset('images/visa.gif')}}" alt='Visa'/>
+													<input type='radio' value='M' name='creditCard' id='mc'/>
+													<img src="{{asset('images/mastercard.gif')}}" alt='Master Card'/>
+													<input type='radio' value='A' name='creditCard' id='amex'/>
+													<img src="{{asset('images/amex.gif')}}" alt='American Express'/>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										<label>
+											Saisissez le numéro (sans espace) :
+										</label>
+									</td>
+									<td class='d-flex flex-column'>
+										<input id='cardNumber' type='text' size='20' maxlength='20' name='cardNumber'/>
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										<label>
+											Date d'expiration :
+										</label>
+									</td>
+									<td>
+										Mois
+										<select name='month'>
+											<option value='01'>01</option>
+											<option value='02'>02</option>
+											<option value='03'>03</option>
+											<option value='04' selected>04</option>
+											<option value='05'>05</option>
+											<option value='06'>06</option>
+											<option value='07'>07</option>
+											<option value='08'>08</option>
+											<option value='09'>09</option>
+											<option value='10'>10</option>
+											<option value='11'>11</option>
+											<option value='12'>12</option>
+										</select>
+										&nbsp;&nbsp;Année
+										<select name='year'>
+											<option value='2021'>2021</option>
+											<option value='2022'>2022</option>
+											<option value='2023'>2023</option>
+											<option value='2024'>2024</option>
+											<option value='2025'>2025</option>
+										</select>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan='2'>
+										<div class='d-flex justify-content-end'>
+											<div class='row'>
+												<div class='col-12'>
+													<a href="./" class="btn btn-secondary">Retour au catalogue</a>
+													<a href="cart" class="btn btn-secondary">Retour au panier</a>
+													<input type='submit' value='Valider' name='validate' class="btn btn-success">
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+
+				</section>
+			</div>
+		</div>
+	</div>
+{% endblock %}

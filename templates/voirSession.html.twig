@@ -1,0 +1,15 @@
+<h1>Contenu de la session</h1>
+{% if cart.products is defined %}
+	{% for item in cart.products %}
+		{{item.name}},{{item.orderedQuantity}}<br>
+	{% endfor %}
+	{% else %}
+<h2>Le panier est vide</h2>
+{% endif %}
+
+{% if customer is defined %}
+{{customer}}
+{% else %}
+<h2>Client déconnecté</h2>
+{% endif %}
+

@@ -1,0 +1,109 @@
+{% extends 'store.html.twig' %}
+
+{% block title %}Passer une commande
+{% endblock %}
+
+{% block principal %}
+	<div class='col-lg-10 offset-lg-1'>
+		<div class='row p-2'>
+			<div class='col-12'>
+				<section class='row card bg-secondary'>
+
+					<div class='card-header'>
+						<h4 class='col-12 text-center text-white'>Confirmation de la commande</h4>
+					</div>
+
+					<div class='list-group list-group-flush'>
+						<table class='card-body table table-secondary list-group-item-secondary'>
+
+							<thead>
+								{# Entête #}
+								<tr>
+									<th scope='col' style='border:none'>Produit</th>
+									<th scope='col' style='border:none' class='text-right'>Prix</th>
+									<th scope='col' style='border:none' class='text-center'>Quantité&nbsp;
+									</th>
+									<th scope='col' style='border:none' class='text-right'>Total</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								{% for product in cart.products %}
+									{# Produit #}
+									<tr class='text-left'>
+										<th scope='row'>{{product.name}}</th>
+										<td class='text-right'>{{product.price}}
+											$</td>
+										<td class='text-center'>{{product.orderedQuantity}}</td>
+										<td class='text-right'>{{product.price * product.orderedQuantity}}
+											$</td>
+									</tr>
+								{% endfor %}
+
+								<tr>
+									<td colspan='2' style='border:none'></td>
+									<td>Total des achats</td>
+									<td class='text-right'>{{cart.amount}}
+										$</td>
+								</tr>
+
+								<tr>
+									<td colspan='2' style='border:none'></td>
+									<td>Frais de livraison</td>
+									<td class='text-right'>{{cart.shippingCosts}}
+										$</td>
+								</tr>
+
+								<tr>
+									<td colspan='2' style='border:none'></td>
+									<td>Sous-total</td>
+									<td class='text-right'>{{cart.subtotal}}
+										$</td>
+								</tr>
+
+								<tr>
+									<td colspan='2' style='border:none'></td>
+									<td>TPS (5 %)</td>
+									<td class='text-right'>{{cart.tps}}
+										$</td>
+								</tr>
+
+								<tr>
+									<td colspan='2' style='border:none'></td>
+									<td>TVQ (9,975 %)</td>
+									<td class='text-right'>{{cart.tvq}}
+										$</td>
+								</tr>
+
+								<tr>
+									<td colspan='2' style='border:none'></td>
+									<td>Total</td>
+									<td class='text-right'>{{cart.total}}
+										$</td>
+								</tr>
+
+								<tr>
+									<td colspan='4' style='border:none'>
+										<div class='d-flex justify-content-end'>
+											<div class='row'>
+												<div class='col-12'>
+													<a class='btn btn-secondary' href='./'>Retour au catalogue</a>
+													<a class='btn btn-secondary' href='./cart'>Retour au panier</a>
+													{% if user is defined and user != null %}
+														<a class='btn btn-success' href='pay'>Confirmer</a>
+													{% endif %}
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+
+						</table>
+					</div>
+
+				</section>
+			</div>
+		</div>
+	</div>
+{% endblock %}

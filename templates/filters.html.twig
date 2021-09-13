@@ -1,0 +1,132 @@
+<div class='col-12'>
+
+	{% if (filter.search|length > 0 or filter.idBrand|length > 0 or filter.idCategory|length > 0) %}
+		<div class='row p-2'>
+			<div class='col-12 text-center'>
+				<a class='btn btn-danger' href='./'>Effacer les filtres</a>
+			</div>
+		</div>
+	{% endif %}
+
+	{# Recherche #}
+	<div class='row p-2'>
+	<div class='col-12'>
+	<div class='row card bg-warning'>
+
+		<div class='card-header'>
+			<h5 class='col-12 text-center text-white'>
+				Recherche
+				{% if filter.search|length > 1  %}
+					:
+					{{filter.search}}
+
+				{% endif %}
+			</h5>
+		</div>
+
+		<form class='card-body' action='{{path('catalog')}}'>
+			<table class='col-12'>
+				<tr>
+					<td class='d-flex flex-column'>
+						<input type='text' placeholder='Texte recherché' name='search'/>
+					</td>
+
+					{% if filter.idBrand|length > 0 %}
+						<input type='hidden' name='idBrand' value='{{filter.idBrand}}'/>
+					{% endif %}
+					{% if filter.idCategory|length > 0 %}
+						<input type='hidden' name='idCategory' value='{{filter.idCategory}}'/>
+					{% endif %}
+
+					<td class='d-flex flex-column'>
+						<input type='submit' class='btn btn-dark' value='Rechercher'/>
+					</td>
+				</tr>
+			</table>
+		</form>
+
+	</div>
+	</div>
+	</div>
+
+	{# Marques #}
+	<div class='row p-2'>
+	<div class='col-12'>
+	<div class='row card bg-warning'>
+
+		<div class='card-header'>
+			<h5 class='col-12 text-center text-white'>Marques</h5>
+		</div>
+
+		<div class='card-body'>
+
+			{% set params = '' %}
+			{% if filter.search|length > 0 %}
+				{% set params = '?search=' ~ filter.search %}
+			{% endif %}
+			{% if filter.idCategory|length > 0 %}
+				{% if params|length > 0 %}
+					{% set params = params ~ '&idCategory=' ~ filter.idCategory %}
+				{% else %}
+					{% set params = '?idCategory=' ~ filter.idCategory %}
+				{% endif %}
+			{% endif %}
+
+			<a href='./{{params}}' class='btn btn-warning text-white'>Toutes</a>
+
+			{% for brand in brands %}
+				{% if params|length > 0 %}
+					<a href="./{{params}}&amp;idBrand={{brand.id}}" class='btn btn-warning text-white'>{{brand.name}}</a>
+				{% else %}
+					<a href="./?idBrand={{brand.id}}" class='btn btn-warning text-white'>{{brand.name}}</a>
+				{% endif %}
+			{% endfor %}
+
+		</div>
+
+	</div>
+	</div>
+	</div>
+
+	{# Catégories #}
+	<div class='row p-2'>
+	<div class='col-12'>
+	<div class='row card bg-warning'>
+
+		<div class='card-header'>
+			<h5 class='col-12 text-center text-white'>Catégorie</h5>
+		</div>
+
+		<div class='card-body'>
+
+			{% set params = '' %}
+			{% if filter.search|length > 0 %}
+				{% set params = '?search=' ~ filter.search %}
+			{% endif %}
+			{% if filter.idBrand|length > 0 %}
+				{% if params|length > 0 %}
+					{% set params = params ~ '&idBrand=' ~ filter.idBrand %}
+				{% else %}
+					{% set params = '?idBrand=' ~ filter.idBrand %}
+				{% endif %}
+			{% endif %}
+
+			<span class='p-1'>
+				<a href='./{{params}}' class='btn btn-warning text-white'>Toutes</a>
+			</span>
+
+			{% for category in categories %}
+				{% if params|length > 0 %}
+					<a href="./{{params}}&amp;idCategory={{category.id}}" class='btn btn-warning text-white'>{{category.name}}</a>
+				{% else %}
+					<a href="./?idCategory={{category.id}}" class='btn btn-warning text-white'>{{category.name}}</a>
+				{% endif %}
+			{% endfor %}
+
+		</div>
+
+	</div>
+	</div>
+	</div>
+
+</div>

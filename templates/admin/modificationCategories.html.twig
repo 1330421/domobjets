@@ -1,0 +1,100 @@
+{% extends 'admin/administration.html.twig' %}
+
+{% block title %}Modifier les catégories
+{% endblock %}
+
+{% block principal %}
+	<div class='col-sm-10 offset-sm-1 col-xl-8 offset-xl-2'>
+		<div
+			class='row'>
+
+			{# Mise à jour des catégories #}
+			<div class='col-12 col-lg-6'>
+				<div class='row p-2'>
+					<div class='col-12'>
+						<section class='row card bg-secondary'>
+
+							<div class='card-header'>
+								<h4 class='col-12 text-center text-warning'>Modifier les catégories</h4>
+							</div>
+
+							<div class='list-group list-group-flush'>
+								<form class='list-group-item list-group-item-secondary' method='post'>
+									<table class='col-12'>
+
+										{% for category in categories %}
+											<tr>
+												<td>
+													{{category.id}}
+													:
+												</td>
+												<td class="d-flex flex-column">
+													<input type='text' name='c{{category.id}}' value='{{category.name}}' maxlength='50'/>
+												</td>
+											</tr>
+										{% endfor %}
+
+										<tr>
+											<td colspan='2'>
+												<div class='d-flex justify-content-end'>
+													<input class='btn btn btn-secondary text-warning' type='submit' value='Mettre à jour'/>
+												</div>
+											</td>
+										</tr>
+									</table>
+								</form>
+							</div>
+
+						</section>
+					</div>
+				</div>
+			</div>
+
+			{# Ajout d'une catégorie #}
+			<div class='col-12 col-lg-6'>
+				<div class='row p-2'>
+					<div class='col-12'>
+						<section class='row card bg-secondary'>
+
+							<div class='card-header'>
+								<h4 class='col-12 text-center text-warning'>Ajouter une catégorie</h4>
+							</div>
+
+							<div class='list-group list-group-flush'>
+								{{form_start(form, {'attr':{'class':'list-group-item list-group-item-secondary'}})}}
+								{{form_errors(form)}}
+								<table class='col-12'>
+									<tr>
+										<td>
+											{{ form_label(form.name, "Catégorie : ") }}
+										</td>
+
+										<td class='d-flex flex-column'>
+											{{ form_widget(form.name) }}
+										</td>
+									</tr>
+									<tr>
+										<td colspan='2' class='text-danger'>
+											{{ form_errors(form.name) }}
+										</td>
+									</tr>
+
+									<tr>
+										<td colspan='2'>
+											<div class='d-flex justify-content-end'>
+												{{ form_widget(form.Ajouter, {'attr':{'class':'btn btn-secondary text-warning'}}) }}
+											</div>
+										</td>
+									</tr>
+								</table>
+								{{form_end(form)}}
+							</div>
+
+						</section>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+{% endblock %}

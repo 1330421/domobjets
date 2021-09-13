@@ -1,0 +1,55 @@
+{% extends 'admin/administration.html.twig' %}
+
+{% block title %}Rapport de ventes
+{% endblock %}
+
+{% block principal %}
+	<div class='col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3'>
+		<div class='row p-2'>
+			<div class='col-12'>
+				<section class='row card bg-secondary'>
+
+					<div class='card-header'>
+						<h4 class='col-12 text-center text-warning'>Rapport de ventes</h4>
+					</div>
+
+					<div class='list-group list-group-flush'>
+						<table class='card-body table table-secondary table-striped list-group-item-secondary'>
+
+							<thead>
+								<tr>
+									<th scope='col'>ID</th>
+									<th scope='col'>Date</th>
+									<th scope='col'>Client</th>
+									<th scope='col' class='text-right'>Montant total</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								{% for order in orders %}
+									<tr>
+										<th scope='col'>
+											{{order.id}}
+										</th>
+										<td>
+											{{order.orderDate|date('Y-m-d')}}
+										</td>
+										<td>
+											{{order.customer.user}}
+										</td>
+										<td class='text-right'>
+											{{order.calculateTotal|number_format(2,',',' ')}}
+											$
+										</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+
+						</table>
+					</div>
+
+				</section>
+			</div>
+		</div>
+	</div>
+{% endblock %}

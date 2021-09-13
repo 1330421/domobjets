@@ -1,0 +1,102 @@
+<div class='row'>
+	<div class='col-12 bg-primary'>
+
+		<div class='row pt-2'>
+			<h1 class='col-12 text-center'>
+				<a class='text-white text-decoration-none' href="{{path('catalog')}}">
+					Domobjets
+				</a>
+			</h1>
+		</div>
+
+		<div class="pos-f-t">
+
+			<nav class="navbar navbar-dark bg-primary">
+				<button class="navbar-toggler d-block d-md-none" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</nav>
+
+			<div class='row'>
+				<div class="collapse navbar-collapse d-md-block" id="navbarContent">
+					<nav class='navbar navbar-expand-md navbar-primary'>
+						<ul class="navbar-nav mr-auto">
+
+							<li class="nav-item active">
+								<a class='btn btn-primary' href="{{path('catalog')}}">Catalogue</a>
+							</li>
+							<li class="nav-item">
+								<a class='btn btn-primary' href="{{path('contact')}}">Contactez-nous</a>
+							</li>
+							{% if user is defined and user != null %}
+								<li class="nav-item">
+									<a class='btn btn-primary' href="{{path('showOrders')}}">Vos achats</a>
+								</li>
+								<li class="nav-item">
+									<a class='btn btn-primary' href="{{path('edit-account')}}">Modifier le compte</a>
+								</li>
+								<li class="nav-item">
+									<a class='btn btn-primary' href="{{path('log-out')}}">Déconnexion</a>
+								</li>
+							{% else %}
+								<li class="nav-item">
+									<a class='btn btn-primary' href="{{path('create-account')}}">Créer un compte</a>
+								</li>
+								<li class="nav-item">
+									<a class='btn btn-primary' href="{{path('log-in')}}">Connexion</a>
+								</li>
+							{% endif %}
+							<li class="nav-item">
+								<a class='btn btn-primary' href="{{path('cart')}}">Panier
+									<span class='text-warning'>
+										{{cart.countItems()}}
+										items
+									</span>
+								</a>
+							</li>
+
+							{# TODO À commenter #}
+						{# <a class='btn btn-danger' href='showSession'>voir session</a> #}
+							{# <a class='btn btn-danger' href='clearSession'>vider session</a> #}
+							{# TODO end #}
+
+						</ul>
+					</nav>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+
+{% if app.session.flashbag.get('notice') is defined %}
+	{% for notice in app.session.flashbag.get('notice') %}
+		<div class='row bg-secondary p-1'>
+			<div class='col-12 text-center text-white'>
+				{{notice}}
+			</div>
+		</div>
+	{% endfor %}
+{% endif %}
+
+{% if app.session.flashbag.get('notice-danger') is defined %}
+	{% for notice in app.session.flashbag.get('notice-danger') %}
+		<div class='row bg-danger p-1'>
+			<div class='col-12 text-center text-white'>
+				{{notice}}
+			</div>
+		</div>
+	{% endfor %}
+{% endif %}
+
+{% if app.session.flashbag.get('notice-success') is defined %}
+	{% for notice in app.session.flashbag.get('notice-success') %}
+		<div class='row bg-success p-1'>
+			<div class='col-12 text-center text-white'>
+				{{notice}}
+			</div>
+		</div>
+	{% endfor %}
+{% endif %}

@@ -1,0 +1,258 @@
+{% extends 'admin/administration.html.twig' %}
+
+{% block title %}Modifier les produits
+{% endblock %}
+
+{% block principal %}
+	<div class='col-md-10 offset-md-1 col-lg-12 offset-lg-0 col-xl-10 offset-xl-1'>
+		<div
+			class='row'>
+
+			{# Produits existants #}
+			<div class='col-12 col-lg-5'>
+				<div class='row p-2'>
+					<div class='col-12'>
+						<section class='row card bg-secondary'>
+
+							<div class='card-header'>
+								<h4 class='col-12 text-center text-warning'>Produits existants</h4>
+							</div>
+
+							<div class='list-group list-group-flush'>
+								<div class='list-group-item list-group-item-secondary'>
+									<table class='col-12'>
+										{% for product in products %}
+
+											<tr>
+												<td>
+													{{product.id}}
+													:
+												</td>
+
+												<td>
+													<a href='edit-products/{{product.id}}' class='btn btn-secondary text-warning'>{{product.name}}</a>
+												</td>
+											</tr>
+
+											<tr>
+												<td></td>
+												<td>
+													<p class='col-6'>{{product.brand.name}}</p>
+												</td>
+											</tr>
+
+										{% endfor %}
+									</table>
+								</div>
+							</div>
+
+						</section>
+					</div>
+				</div>
+			</div>
+
+			<div class='col-12 col-lg-7'>
+				<div class='row p-2'>
+					<div class='col-12'>
+						<section class='row card bg-secondary'>
+
+							<div class='card-header '>
+								<h4 class='col-12 text-center text-warning'>
+									{% if isEditing is defined %}
+										Modifier le produit
+									{% else %}
+										Ajouter un produit
+									{% endif %}
+								</h4>
+							</div>
+
+							<div class='list-group list-group-flush'>
+								<div class='list-group-item list-group-item-secondary'>
+									<div class='col-12'>
+
+										{{form_start(form, {'attr':{'class':'row'}})}}
+										{{form_errors(form)}}
+										<table class='col-12'>
+
+											<tr>
+												<td>
+													{{ form_label(form.name, "Nom : ") }}
+												</td>
+
+												<td class='d-flex flex-column'>
+													{{ form_widget(form.name, {'attr':{'class':'col-12'}}) }}
+												</td>
+											</tr>
+											<tr>
+												<td colspan='2' class='text-danger'>
+													{{ form_errors(form.name) }}
+												</td>
+											</tr>
+
+											<tr>
+												<td>
+													{{ form_label(form.description, "Description : ") }}
+												</td>
+
+												<td class='d-flex flex-column'>
+													{{ form_widget(form.description, {'attr':{'class':'col-12'}}) }}
+												</td>
+											</tr>
+											<tr>
+												<td colspan='2' class='text-danger'>
+													{{ form_errors(form.description) }}
+												</td>
+											</tr>
+
+											<tr>
+												<td>
+													{{ form_label(form.price, "Prix : ") }}
+												</td>
+
+												<td class='d-flex flex-column'>
+													{{ form_widget(form.price, {'attr':{'class':'col-12'}}) }}
+												</td>
+											</tr>
+											<tr>
+												<td colspan='2' class='text-danger'>
+													{{ form_errors(form.price) }}
+												</td>
+											</tr>
+
+											<tr>
+												<td>
+													{{ form_label(form.stockQty, "Quantité en inventaire : ") }}
+												</td>
+
+												<td class='d-flex flex-column'>
+													{{ form_widget(form.stockQty, {'attr':{'class':'col-12', 'min':0}}) }}
+												</td>
+											</tr>
+											<tr>
+												<td colspan='2' class='text-danger'>
+													{{ form_errors(form.stockQty) }}
+												</td>
+											</tr>
+
+											<tr>
+												<td>
+													{{ form_label(form.minThresholdQty, "Quantité minimum : ") }}
+												</td>
+
+												<td class='d-flex flex-column'>
+													{{ form_widget(form.minThresholdQty, {'attr':{'class':'col-12', 'min':0}}) }}
+												</td>
+											</tr>
+											<tr>
+												<td colspan='2' class='text-danger'>
+													{{ form_errors(form.minThresholdQty) }}
+												</td>
+											</tr>
+
+											<tr>
+												<td>
+													{{ form_label(form.brand, "Marque : ") }}
+												</td>
+
+												<td class='d-flex flex-column'>
+													{{ form_widget(form.brand, {'attr':{'class':'col-12'}}) }}
+												</td>
+											</tr>
+											<tr>
+												<td colspan='2' class='text-danger'>
+													{{ form_errors(form.brand) }}
+												</td>
+											</tr>
+
+											<tr>
+												<td>
+													{{ form_label(form.category, "Catégorie : ") }}
+												</td>
+
+												<td class='d-flex flex-column'>
+													{{ form_widget(form.category, {'attr':{'class':'col-12'}}) }}
+												</td>
+											</tr>
+											<tr>
+												<td colspan='2' class='text-danger'>
+													{{ form_errors(form.category) }}
+												</td>
+											</tr>
+
+											<tr>
+												<td colspan='2'>
+													<div class='d-flex justify-content-end'>
+														{{ form_widget(form.Valider, {'attr':{'class':'btn btn-secondary text-warning'}}) }}
+													</div>
+												</td>
+											</tr>
+
+										</table>
+										{{form_end(form)}}
+									</div>
+								</div>
+
+								{% if imagesForm is defined %}
+
+									<div class='list-group-item list-group-item-secondary'>
+										<div class='col-12'>
+											{{form_start(imagesForm, {'attr':{'class':'row'}})}}
+											{{form_errors(imagesForm)}}
+											<table class='col-12'>
+
+												<tr>
+													<td>
+														{{ form_label(imagesForm.productImage, "Image du produit : ") }}
+													</td>
+
+													<td class='d-flex flex-column'>
+														{{ form_widget(imagesForm.productImage, {'attr':{'class':'col-12'}}) }}
+													</td>
+												</tr>
+												<tr>
+													<td colspan='2' class='text-danger'>
+														{{ form_errors(imagesForm.productImage) }}
+													</td>
+												</tr>
+
+
+												<tr>
+													<td>
+														{{ form_label(imagesForm.descriptionImage, "Image de la description : ") }}
+													</td>
+
+													<td class='d-flex flex-column'>
+														{{ form_widget(imagesForm.descriptionImage, {'attr':{'class':'col-12'}}) }}
+													</td>
+												</tr>
+												<tr>
+													<td colspan='2' class='text-danger'>
+														{{ form_errors(imagesForm.descriptionImage) }}
+													</td>
+												</tr>
+
+												<tr>
+													<td colspan='2'>
+														<div class='d-flex justify-content-end'>
+															{{ form_widget(imagesForm.Envoyer, {'attr':{'class':'btn btn btn-secondary text-warning'}}) }}
+														</div>
+													</td>
+												</tr>
+
+											</table>
+											{{form_end(imagesForm)}}
+
+										</div>
+									</div>
+								{% endif %}
+
+							</div>
+						</section>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+{% endblock %}
